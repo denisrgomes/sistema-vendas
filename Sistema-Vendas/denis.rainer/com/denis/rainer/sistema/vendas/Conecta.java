@@ -1,4 +1,4 @@
-package com.denis.raner.sistema.vendas;
+package com.denis.rainer.sistema.vendas;
 import org.hibernate.Session;
 
 public class Conecta {
