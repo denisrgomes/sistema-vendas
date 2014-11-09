@@ -14,10 +14,11 @@ public class HibernateUtil {
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
 			return cfg.buildSessionFactory();
-			
+		
 		} catch (Throwable e) {
 			System.out.println("Deu pau!! "+ e);
 			throw new ExceptionInInitializerError();
+			 
 		}
 		
 	}

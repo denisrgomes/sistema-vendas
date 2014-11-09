@@ -9,8 +9,9 @@
   <property name="hibernate.connection.username">root</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
+   <property name="hibernate.current_session_context_class">thread</property>
   <mapping class="com.denis.rainer.sistema.cliente.Cliente"/>
   <mapping class="com.denis.rainer.sistema.produto.Produto"/>
- <mapping class="com.denis.rainer.sistema.venda.Venda"/>
+  <mapping class="com.denis.rainer.sistema.venda.Venda"/>
  </session-factory>
 </hibernate-configuration>
