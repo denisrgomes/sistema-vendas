@@ -1,4 +1,4 @@
-package com.denis.rainer.sistema.vendas;
+package com.denis.rainer.sistema.venda;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

@@ -15,7 +15,7 @@ public class Produto {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private String estoque;
+	private Integer estoque;
 	private String descricao;
 	@Column(name="data_cadastro")
 	private Date dataCadastro;
@@ -23,16 +23,29 @@ public class Produto {
 	private String unidade;
 	
 	
+	public Produto(){
+		
+	};
+	
+	public Produto(Integer estoque, String descricao, Date dataCadastro,
+			float valor, String unidade) {
+		
+		this.estoque = estoque;
+		this.descricao = descricao;
+		this.dataCadastro = dataCadastro;
+		this.valor = valor;
+		this.unidade = unidade;
+	}
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getEstoque() {
+	public Integer getEstoque() {
 		return estoque;
 	}
-	public void setEstoque(String estoque) {
+	public void setEstoque(Integer estoque) {
 		this.estoque = estoque;
 	}
 	public String getDescricao() {
