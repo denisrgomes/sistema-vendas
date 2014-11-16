@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.denis.rainer.sistema.produto.Produto;
+import com.denis.rainer.sistema.produto.ProdutoRN;
 import com.denis.rainer.sistema.venda.HibernateUtil;
 
 public class ProdutoTest {
@@ -32,7 +33,7 @@ public class ProdutoTest {
 				transaction.commit();
 				
 			}catch (Exception e) {
-				System.out.println("Problema no commit: " + e.getMessage());;
+				System.out.println("Problema no commit: " + e.getMessage());
 			
 			}finally{
 				try {
@@ -47,7 +48,7 @@ public class ProdutoTest {
 			}
 			
 	}
-	
+/*
 	@Before
 	public void setup(){
 		Produto p1 = new Produto(50, "Caderno", new Date(), 7.0f, "lote");
@@ -64,8 +65,8 @@ public class ProdutoTest {
 		session.save(p5);
 		session.save(p6);
 	}
-	
-	
+*/	
+/*	
 	@Test
 	public void salvarProdutoTest(){
 		 String sql = "from Produto p where p.descricao like :descricao";
@@ -74,5 +75,22 @@ public class ProdutoTest {
 		 Produto produtoConsultado = (Produto) consulta.uniqueResult();
 		 
 		 assertEquals("edicao", produtoConsultado.getUnidade());
+	}
+*/
+	
+	@Test
+	public void salvarProdutoTest(){
+		Produto p1 = new Produto();
+		
+		p1.setDataCadastro(new Date());
+		p1.setDescricao("Caderno");
+		p1.setEstoque(50);
+		p1.setValor(7.0f);
+		p1.setUnidade("lote");
+		
+		ProdutoRN produtoRN = new ProdutoRN();
+		produtoRN.salvar(p1);
+		
+		assertEquals(true, true);
 	}
 }
