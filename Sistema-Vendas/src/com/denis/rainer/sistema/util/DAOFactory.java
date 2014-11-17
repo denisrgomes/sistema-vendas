@@ -4,7 +4,7 @@ import com.denis.rainer.sistema.cliente.ClienteDAO;
 import com.denis.rainer.sistema.cliente.ClienteDAOHibernate;
 import com.denis.rainer.sistema.produto.ProdutoDAO;
 import com.denis.rainer.sistema.produto.ProdutoDAOHibernate;
-import com.denis.rainer.sistema.venda.HibernateUtil;
+import com.denis.rainer.sistema.venda.VendaDAO;
 
 public class DAOFactory {
 	
@@ -22,5 +22,13 @@ public class DAOFactory {
 		produtoDAOHibernate.setSession(HibernateUtil.getSession().getCurrentSession());
 		
 		return produtoDAOHibernate;
+	}
+
+	public static VendaDAO criarVendaDAO() {
+		
+		VendaDAOHibernate vendaDAOHibernate = new VendaDAOHibernate();
+		vendaDAOHibernate.setSession(HibernateUtil.getSession().getCurrentSession());
+		
+		return vendaDAOHibernate;
 	}
 }

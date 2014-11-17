@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.denis.rainer.sistema.produto.Produto;
 import com.denis.rainer.sistema.produto.ProdutoRN;
-import com.denis.rainer.sistema.venda.HibernateUtil;
+import com.denis.rainer.sistema.util.HibernateUtil;
 
 public class ProdutoTest {
 

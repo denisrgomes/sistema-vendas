@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import com.denis.rainer.sistema.cliente.Cliente;
 import com.denis.rainer.sistema.cliente.ClienteRN;
-import com.denis.rainer.sistema.venda.HibernateUtil;
+import com.denis.rainer.sistema.util.HibernateUtil;
 import com.sun.org.apache.xpath.internal.operations.Equals;
 
 public class ClienteTest {

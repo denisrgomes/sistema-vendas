@@ -11,8 +11,6 @@ import javax.servlet.ServletResponse;
 
 import org.hibernate.SessionFactory;
 
-import com.denis.rainer.sistema.venda.HibernateUtil;
-
 public class HibernateFilterConnection implements Filter{
 
 	private SessionFactory sf;
