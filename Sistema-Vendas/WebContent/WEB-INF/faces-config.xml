@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-	<!-- <application>
+ <validator>
+  <validator-id>cpf-validator</validator-id>
+  <validator-class>com.denis.rainer.sistema.validators.CPFValidator</validator-class>
+ </validator>
+ <application/>
+ <!-- <application>
 		<resource-bundle>
 			<base-name>resources.messages</base-name>
 			<var>msg</var>

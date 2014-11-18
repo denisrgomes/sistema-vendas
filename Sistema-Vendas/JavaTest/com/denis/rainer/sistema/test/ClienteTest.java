@@ -3,6 +3,7 @@ package com.denis.rainer.sistema.test;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -62,5 +63,13 @@ public class ClienteTest {
 		
 		assertEquals(true, true);
 	}
-
+	
+	@Test
+	public void listarClienteTest(){
+		
+		ClienteRN clienteRN = new ClienteRN();
+		List<Cliente> clienteListado = clienteRN.listar();
+		
+		assertEquals(6, clienteListado.size());
+	}
 }

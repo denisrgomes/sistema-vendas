@@ -1,5 +1,7 @@
 package com.denis.rainer.sistema.cliente;
 
+import java.util.List;
+
 import com.denis.rainer.sistema.util.DAOFactory;
 
 public class ClienteRN {
@@ -16,4 +18,10 @@ public class ClienteRN {
 	public void salvar(Cliente c1) {
 		this.clienteDAO.salvar(c1);
 	}
+
+	public List<Cliente> listar() {
+		
+		return clienteDAO.listar();
+	}
+
 }

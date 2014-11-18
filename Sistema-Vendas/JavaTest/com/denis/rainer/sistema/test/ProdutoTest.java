@@ -4,12 +4,16 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import antlr.collections.List;
 
 import com.denis.rainer.sistema.produto.Produto;
 import com.denis.rainer.sistema.produto.ProdutoRN;
@@ -48,7 +52,7 @@ public class ProdutoTest {
 			}
 			
 	}
-/*
+
 	@Before
 	public void setup(){
 		Produto p1 = new Produto(50, "Caderno", new Date(), 7.0f, "lote");
@@ -65,21 +69,33 @@ public class ProdutoTest {
 		session.save(p5);
 		session.save(p6);
 	}
-*/	
-/*	
+
+	@After
+	public void limpaBanco(){
+		Criteria lista = session.createCriteria(Produto.class);
+		@SuppressWarnings("unchecked")
+		java.util.List<Produto> produto = lista.list();
+		
+		for (Produto produto2 : produto) {
+			session.delete(produto2);	
+		}
+	}
 	@Test
 	public void salvarProdutoTest(){
-		 String sql = "from Produto p where p.descricao like :descricao";
-		 Query consulta = session.createQuery(sql);
-		 consulta.setString("descricao", "%Li%");
-		 Produto produtoConsultado = (Produto) consulta.uniqueResult();
+		 
+
+		Query consulta = pesquisar("Li");
+		
+		Produto produtoConsultado = (Produto) consulta.uniqueResult();
 		 
 		 assertEquals("edicao", produtoConsultado.getUnidade());
 	}
-*/
-	
+
+
+	/*
 	@Test
 	public void salvarProdutoTest(){
+		
 		Produto p1 = new Produto();
 		
 		p1.setDataCadastro(new Date());
@@ -88,9 +104,57 @@ public class ProdutoTest {
 		p1.setValor(7.0f);
 		p1.setUnidade("lote");
 		
+	
 		ProdutoRN produtoRN = new ProdutoRN();
+		
+			
 		produtoRN.salvar(p1);
 		
 		assertEquals(true, true);
 	}
+	*/
+	
+	@Test
+	public void listarProdutoTest(){
+		Criteria lista = session.createCriteria(Produto.class);
+		
+		@SuppressWarnings("unchecked")
+		java.util.List<Produto> produto = lista.list();
+		
+		assertEquals(6, produto.size());
+	}
+	
+	@Test
+	public void excluirProdutoTest(){
+		
+		Query consulta = pesquisar("Papel");
+		
+		Produto produtoDeletado = (Produto) consulta.uniqueResult();
+		session.delete(produtoDeletado);
+		
+		produtoDeletado = (Produto) consulta.uniqueResult();
+		
+		assertNull(produtoDeletado);
+	}
+	
+	@Test
+	public void alterarProdutoTest(){
+
+		Query consulta = pesquisar("Livro");
+		
+		Produto produtoAlterado = (Produto) consulta.uniqueResult();
+		produtoAlterado.setEstoque(100);
+		session.update(produtoAlterado);
+		
+		produtoAlterado = (Produto) consulta.uniqueResult();
+		assertEquals(100, produtoAlterado.getEstoque().longValue());
+	}
+
+	private Query pesquisar(String parametro) {
+		String sql ="from Produto p where p.descricao like :descricao";
+		Query consulta = session.createQuery(sql);
+		consulta.setString("descricao", "%"+parametro+"%");
+		return consulta;
+	}
 }
+	

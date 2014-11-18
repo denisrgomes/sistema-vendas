@@ -19,7 +19,9 @@
 						<h:inputText value="#{clienteBean.clienteSelecionado.nome}" />
 						
 						<h:outputLabel value="Cpf" />
-						<h:inputText value="#{clienteBean.clienteSelecionado.cpf}" />
+						<h:inputText value="#{clienteBean.clienteSelecionado.cpf}" >
+						<f:validator validatorId="cpf-validator"/>
+						</h:inputText>
 						
 						<h:outputLabel value="Email" />
 						<h:inputText value="#{clienteBean.clienteSelecionado.email}" />
@@ -34,6 +36,41 @@
 						
 					<h:commandButton value="salvar" action="#{clienteBean.salvar}" />
 				</h:form>
+				<br></br>
+				
+				<h:form id="lista">
+					<h:dataTable value="#{clienteBean.lista}" var="cliente" border="1">
+						<f:facet name="header">Lista de Clientes</f:facet>
+						
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+							#{cliente.nome}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Cpf</f:facet>
+							#{cliente.cpf}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Email</f:facet>
+							#{cliente.email}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Endereco</f:facet>
+							#{cliente.endereco}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Data cadastro</f:facet>
+							<h:outputText value="#{cliente.dataCadastro}">
+								<f:convertDateTime locale="pt_BR" dateStyle="medium" />	
+							</h:outputText>
+							</h:column>
+						<h:column>
+							<f:facet name="header">Renda</f:facet>
+							#{cliente.renda}
+						</h:column>
+					</h:dataTable>
+				</h:form>
+				 
 			</ui:define>	
 	</ui:composition>
 
