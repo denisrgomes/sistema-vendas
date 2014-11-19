@@ -30,7 +30,9 @@
 						<h:inputText value="#{clienteBean.clienteSelecionado.endereco}" />
 						
 						<h:outputLabel value="Renda" />
-						<h:inputText value="#{clienteBean.clienteSelecionado.renda}" />
+						<h:inputText value="#{clienteBean.clienteSelecionado.renda}">
+							<f:convertNumber minFractionDigits="2" locale="pt_BR"/>
+						</h:inputText>
 						
 					</h:panelGrid>
 						
@@ -66,7 +68,9 @@
 							</h:column>
 						<h:column>
 							<f:facet name="header">Renda</f:facet>
-							#{cliente.renda}
+							<h:outputText value="#{cliente.renda}">
+								<f:convertNumber currencyCode="BRL" type="currency" locale="pt_BR"/>
+							</h:outputText>
 						</h:column>
 					</h:dataTable>
 				</h:form>
