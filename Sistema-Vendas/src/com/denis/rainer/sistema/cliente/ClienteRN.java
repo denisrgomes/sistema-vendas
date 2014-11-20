@@ -5,14 +5,14 @@ import java.util.List;
 import com.denis.rainer.sistema.util.DAOFactory;
 
 public class ClienteRN {
- 
+
 	/*
 	 * Interface do Cliente
 	 */
 	private ClienteDAO clienteDAO;
-	
-	public ClienteRN(){
-	this.clienteDAO = DAOFactory.criarClienteDAO();
+
+	public ClienteRN() {
+		this.clienteDAO = DAOFactory.criarClienteDAO();
 	}
 
 	public void salvar(Cliente c1) {
@@ -20,8 +20,13 @@ public class ClienteRN {
 	}
 
 	public List<Cliente> listar() {
-		
+
 		return clienteDAO.listar();
+	}
+
+	public void excluir(Cliente cliente) {
+		this.clienteDAO.excluir(cliente);
+
 	}
 
 }
