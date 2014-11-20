@@ -53,7 +53,7 @@ public class ClienteTest {
 		ClienteRN clienteRN = new ClienteRN();
 
 		Cliente c1 = new Cliente("26655387337", "cliente1@email.com",
-				"Rua Cliente 1", new Date(), "Cliente 2", 1000);
+				"Rua Cliente 1", new Date(), "Cliente 1", 1000);
 		Cliente c2 = new Cliente("26655387338", "cliente2@email.com",
 				"Rua Cliente 1", new Date(), "Cliente 2", 1000);
 		Cliente c3 = new Cliente("26565387339", "cliente3@email.com",
@@ -118,5 +118,30 @@ public class ClienteTest {
 
 		assertEquals(2, lista.size());
 
+	}
+	
+	@Test
+	public void pesquisarTest(){
+		ClienteRN clienteRN  = new ClienteRN();
+		Cliente clientePesquisado = clienteRN.pesquisar("te 1");
+		
+		assertEquals("26655387337",clientePesquisado.getCpf());
+	}
+	
+	@Test
+	public void alterarTest(){
+		ClienteRN clienteRN  = new ClienteRN();
+		Cliente clientePesquisado = clienteRN.pesquisar("te 1");
+		
+		assertEquals("26655387337",clientePesquisado.getCpf());
+		
+		clientePesquisado.setEndereco("Novo Endereco");
+		
+		clienteRN.alterar(clientePesquisado);
+		
+		Cliente clienteAlterado = clienteRN.pesquisar("te 1");
+		
+		assertEquals("Novo Endereco", clienteAlterado.getEndereco());
+	
 	}
 }

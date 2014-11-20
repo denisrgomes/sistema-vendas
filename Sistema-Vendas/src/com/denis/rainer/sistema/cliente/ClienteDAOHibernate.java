@@ -3,6 +3,7 @@ package com.denis.rainer.sistema.cliente;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class ClienteDAOHibernate implements ClienteDAO {
@@ -34,6 +35,20 @@ public class ClienteDAOHibernate implements ClienteDAO {
 	public void excluir(Cliente cliente) {
 		this.session.delete(cliente);
 
+	}
+
+	@Override
+	public Cliente pesquisar(String string) {
+		
+		Query consulta = this.session.createQuery("from Cliente c where c.nome like :nome");
+		consulta.setString("nome", "%"+string+"%");
+		return (Cliente) consulta.uniqueResult();
+	}
+
+	@Override
+	public void alterar(Cliente cliente) {
+		this.session.update(cliente);
+		
 	}
 
 }
