@@ -19,8 +19,8 @@ public class CPFValidator implements Validator{
                             || !calcularDigitoVerificador(cpf.substring(0, 9)).equals(
                                             cpf.substring(9, 11))) {
                     throw new ValidatorException(new FacesMessage(
-                                    FacesMessage.SEVERITY_ERROR, "CPF invlido.",
-                                    "Favor informar um CPF vlido."));
+                                    FacesMessage.SEVERITY_ERROR, "CPF invalido.",
+                                    "Favor informar um CPF valido."));
             }
     }
 

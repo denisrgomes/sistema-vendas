@@ -64,7 +64,7 @@ public class ClienteTest {
 		clienteRN.salvar(c3);
 	}
 
-	@After
+	//@After
 	public void limpaBanco() {
 		ClienteRN clienteRN = new ClienteRN();
 		@SuppressWarnings("unchecked")
@@ -116,7 +116,7 @@ public class ClienteTest {
 
 		lista = clienteRN.listar();
 
-		assertEquals(2, lista.size());
+		assertEquals(6, lista.size());
 
 	}
 	

@@ -26,6 +26,25 @@ public class ClienteBean {
 		FacesMessage fmessage = new FacesMessage("Cliente cadastrado com sucesso!");
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, fmessage);
+		
+		this.lista = null;
+	}
+
+	public void excluir(){
+	
+		ClienteRN clienteRN = new ClienteRN();
+		/*
+		lista = clienteRN.listar();
+		
+		Cliente clienteExcluido = lista.get(0);
+
+		clienteRN.excluir(clienteExcluido);
+		*/
+
+		lista = clienteRN.listar();
+		clienteRN.excluir(this.clienteSelecionado);
+		this.lista = null;
+		
 	}
 
 	public Cliente getClienteSelecionado() {
@@ -40,9 +59,9 @@ public class ClienteBean {
 	
 		ClienteRN clienteRN = new ClienteRN();
 		
-		//if(lista != null){
+		if(lista == null){
 			lista = clienteRN.listar();
-		//}
+		}
 		
 		return lista;
 	}
