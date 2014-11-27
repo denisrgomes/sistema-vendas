@@ -1,37 +1,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<!-- 
+<!-- 
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
-			<ui:define name="pageTitle">Cadastro Produto</ui:define>
-			<ui:define name="pageHeader">Cadastro de Produtos</ui:define>
-			<ui:define name="body">
-				<h:form id="edicao">
-				<h:messages/>
-					<h:panelGrid columns="2">
-						<h:outputLabel value="Descrição: " />
-						<h:inputText value="#{produtoBean.produtoSelecionado.descricao}" />
-						
-						<h:outputLabel value="Unidade: " />
-						<h:inputText value="#{produtoBean.produtoSelecionado.unidade}" />
-						
-						<h:outputLabel value="Valor: " />
-						<h:inputText value="#{produtoBean.produtoSelecionado.valor}" />
-						
-						<h:outputLabel value="Estoque: " />
-						<h:inputText value="#{produtoBean.produtoSelecionado.estoque}" />
-					
-					</h:panelGrid>
-					
-					<h:commandButton value="salvar" action="#{produtoBean.salvar}" />
-				</h:form>
-			</ui:define>
-	</ui:composition>
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="pageTitle">Cadastro Produto</ui:define>
+	<ui:define name="pageHeader">Cadastro de Produtos</ui:define>
+	<ui:define name="body">
+		<h:form id="edicao">
+			<h:messages />
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Descrição: " />
+				<h:inputText value="#{produtoBean.produtoSelecionado.descricao}" />
+
+				<h:outputLabel value="Unidade: " />
+				<h:inputText value="#{produtoBean.produtoSelecionado.unidade}" />
+
+				<h:outputLabel value="Valor: " />
+				<h:inputText value="#{produtoBean.produtoSelecionado.valor}" />
+
+				<h:outputLabel value="Estoque: " />
+				<h:inputText value="#{produtoBean.produtoSelecionado.estoque}" />
+
+			</h:panelGrid>
+
+			<h:commandButton value="salvar" action="#{produtoBean.salvar}" />
+		</h:form>
+		<h:form id="lista">
+			<h:dataTable value="#{produtoBean.lista}" var="produto" border="1"
+				rendered="#{not empty produtoBean.lista}">
+				<f:facet name="header">Lista Produtos</f:facet>
+
+				<h:column>
+					<f:facet name="descricao">Descricao</f:facet>
+								#{produto.descricao}
+						</h:column>
+				<h:column>
+					<f:facet name="dataCadastro">Data Cadastro</f:facet>
+					<h:outputText value="#{produto.dataCadastro}">
+						<f:convertDateTime dateStyle="medium" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="valor">Valor</f:facet>
+					<h:outputText value="#{produto.valor}">
+						<f:convertNumber currencyCode="BRL" type="currency" locale="pt_BR"></f:convertNumber>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="unidade">Unidade</f:facet>
+								#{produto.unidade}
+						</h:column>
+				<h:column>
+					<f:facet name="header">Ações</f:facet>
+						<h:commandLink action="#{produtoBean.excluir}" onclick="if(!confirm('Deseja excluir o produto #{produto.descricao}?'))return false">
+						<h:graphicImage library="imagens" name="button_cancel.png"/>
+						<f:setPropertyActionListener target="#{produtoBean.produtoSelecionado}" value="#{produto}"/>
+						</h:commandLink>
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
 
 </html>

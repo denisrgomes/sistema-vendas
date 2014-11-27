@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.After;
@@ -64,10 +63,9 @@ public class ClienteTest {
 		clienteRN.salvar(c3);
 	}
 
-	//@After
+	@After
 	public void limpaBanco() {
 		ClienteRN clienteRN = new ClienteRN();
-		@SuppressWarnings("unchecked")
 		List<Cliente> cliente = clienteRN.listar();
 
 		for (Cliente cliente2 : cliente) {

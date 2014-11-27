@@ -3,6 +3,7 @@ package com.denis.rainer.sistema.test;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -12,8 +13,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import antlr.collections.List;
 
 import com.denis.rainer.sistema.produto.Produto;
 import com.denis.rainer.sistema.produto.ProdutoRN;
@@ -71,7 +70,7 @@ public class ProdutoTest {
 		session.save(p6);
 	}
 
-	@After
+	//@After
 	public void limpaBanco() {
 		Criteria lista = session.createCriteria(Produto.class);
 		@SuppressWarnings("unchecked")
@@ -111,26 +110,11 @@ public class ProdutoTest {
 
 	@Test
 	public void listarProdutoTest() {
-		Criteria lista = session.createCriteria(Produto.class);
-
-		@SuppressWarnings("unchecked")
-		java.util.List<Produto> produto = lista.list();
-
-		assertEquals(6, produto.size());
+		ProdutoRN produtoRN = new ProdutoRN();
+		java.util.List<Produto> lista = produtoRN.listar();
+		assertEquals(6, lista.size());
 	}
 
-	@Test
-	public void excluirProdutoTest() {
-
-		Query consulta = pesquisar("Papel");
-
-		Produto produtoDeletado = (Produto) consulta.uniqueResult();
-		session.delete(produtoDeletado);
-
-		produtoDeletado = (Produto) consulta.uniqueResult();
-
-		assertNull(produtoDeletado);
-	}
 
 	@Test
 	public void alterarProdutoTest() {
@@ -150,5 +134,15 @@ public class ProdutoTest {
 		Query consulta = session.createQuery(sql);
 		consulta.setString("descricao", "%" + parametro + "%");
 		return consulta;
+	}
+	
+	@Test
+	public void excluir(){
+		ProdutoRN produtoRN = new ProdutoRN();
+		List<Produto> produtoExcluido = produtoRN.listar();
+		produtoRN.excluir(produtoExcluido.get(0));
+		
+		produtoExcluido = produtoRN.listar();
+		assertEquals(5,produtoExcluido.size());
 	}
 }
