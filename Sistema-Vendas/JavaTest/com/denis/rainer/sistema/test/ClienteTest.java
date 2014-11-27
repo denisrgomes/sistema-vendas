@@ -51,19 +51,19 @@ public class ClienteTest {
 	public void setup() {
 		ClienteRN clienteRN = new ClienteRN();
 
-		Cliente c1 = new Cliente("26655387337", "cliente1@email.com",
+		Cliente c1 = new Cliente("64241181520", "cliente1@email.com",
 				"Rua Cliente 1", new Date(), "Cliente 1", 1000);
-		Cliente c2 = new Cliente("26655387338", "cliente2@email.com",
-				"Rua Cliente 1", new Date(), "Cliente 2", 1000);
-		Cliente c3 = new Cliente("26565387339", "cliente3@email.com",
-				"Rua Cliente 1", new Date(), "Cliente 3", 1000);
+		Cliente c2 = new Cliente("78600825431", "cliente2@email.com",
+				"Rua Cliente 2", new Date(), "Cliente 2", 1000);
+		Cliente c3 = new Cliente("81629676489", "cliente3@email.com",
+				"Rua Cliente 3", new Date(), "Cliente 3", 1000);
 
 		clienteRN.salvar(c1);
 		clienteRN.salvar(c2);
 		clienteRN.salvar(c3);
 	}
 
-	@After
+	//@After
 	public void limpaBanco() {
 		ClienteRN clienteRN = new ClienteRN();
 		List<Cliente> cliente = clienteRN.listar();
@@ -77,7 +77,7 @@ public class ClienteTest {
 	public void salvarTest() {
 		Cliente c1 = new Cliente();
 
-		c1.setCpf("123456789");
+		c1.setCpf("81629676489");
 		c1.setDataCadastro(new Date());
 		c1.setEmail("denis@gmail.com");
 		c1.setEndereco("Rua");

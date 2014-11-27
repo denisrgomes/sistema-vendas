@@ -9,4 +9,6 @@ public interface ProdutoDAO {
 	public List<Produto> listar();
 
 	public void excluir(Produto produto);
+
+	public void alterar(Produto produto);
 }

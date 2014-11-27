@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -14,18 +15,20 @@
 	<ui:define name="body">
 		<h:form id="edicao">
 			<h:messages />
+			<h:inputHidden value="#{clienteBean.clienteSelecionado.id}" />
+			
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Nome: " />
-				<h:inputText value="#{clienteBean.clienteSelecionado.nome}" />
+				<h:inputText id="nomeCLiente" value="#{clienteBean.clienteSelecionado.nome}" required="true"/>
 
 				<h:outputLabel value="Cpf" />
-				<h:inputText value="#{clienteBean.clienteSelecionado.cpf}">
+				<h:inputText id="cpf" value="#{clienteBean.clienteSelecionado.cpf}" required="true">
 					<f:validator validatorId="cpf-validator" />
 				</h:inputText>
 
 				<h:outputLabel value="Email" />
-				<h:inputText value="#{clienteBean.clienteSelecionado.email}" />
-
+				<h:inputText id="email" value="#{clienteBean.clienteSelecionado.email}" />
+				
 				<h:outputLabel value="Endereço" />
 				<h:inputText value="#{clienteBean.clienteSelecionado.endereco}" />
 
@@ -37,6 +40,9 @@
 			</h:panelGrid>
 
 			<h:commandButton value="salvar" action="#{clienteBean.salvar}" />
+			<tt></tt>
+			<h:commandButton value="novo" action="#{clienteBean.novo}" />
+
 		</h:form>
 		<br></br>
 
@@ -69,9 +75,13 @@
 
 					<h:commandLink action="#{clienteBean.excluir()}"
 						onclick="if(!confirm('Deseja realmente excluir o cliente #{cliente.nome}?')) return false">
-						<h:graphicImage library="imagens" name="button_cancel.png" />
+						<h:graphicImage library="imagens" name="cancel19.png" />
 						<f:setPropertyActionListener
 							target="#{clienteBean.clienteSelecionado}" value="#{cliente}" />
+					</h:commandLink>
+					<h:commandLink onclick="">
+						<h:graphicImage library="imagens" name="edit26.png" />
+						<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.clienteSelecionado}" />
 					</h:commandLink>
 
 				</h:column>

@@ -14,54 +14,62 @@
 	<ui:define name="body">
 		<h:form id="edicao">
 			<h:messages />
+			<h:inputHidden value="#{produtoBean.produtoSelecionado.id}" />
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Descrição: " />
-				<h:inputText value="#{produtoBean.produtoSelecionado.descricao}" />
+				<h:inputText id="produtoDescricao" value="#{produtoBean.produtoSelecionado.descricao}" required="true"/>
 
 				<h:outputLabel value="Unidade: " />
 				<h:inputText value="#{produtoBean.produtoSelecionado.unidade}" />
 
 				<h:outputLabel value="Valor: " />
-				<h:inputText value="#{produtoBean.produtoSelecionado.valor}" />
+				<h:inputText id="valor" value="#{produtoBean.produtoSelecionado.valor}" required="true"/>
 
 				<h:outputLabel value="Estoque: " />
-				<h:inputText value="#{produtoBean.produtoSelecionado.estoque}" />
+				<h:inputText id="estoque" value="#{produtoBean.produtoSelecionado.estoque}" required="true"/>
 
 			</h:panelGrid>
 
 			<h:commandButton value="salvar" action="#{produtoBean.salvar}" />
+			<h:commandButton value="novo" action="#{produtoBean.novo}" />
 		</h:form>
+		<br />
 		<h:form id="lista">
 			<h:dataTable value="#{produtoBean.lista}" var="produto" border="1"
 				rendered="#{not empty produtoBean.lista}">
 				<f:facet name="header">Lista Produtos</f:facet>
 
 				<h:column>
-					<f:facet name="descricao">Descricao</f:facet>
+					<f:facet name="header">Descricao</f:facet>
 								#{produto.descricao}
 						</h:column>
 				<h:column>
-					<f:facet name="dataCadastro">Data Cadastro</f:facet>
+					<f:facet name="header">Data Cadastro</f:facet>
 					<h:outputText value="#{produto.dataCadastro}">
 						<f:convertDateTime dateStyle="medium" />
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<f:facet name="valor">Valor</f:facet>
+					<f:facet name="header">Valor</f:facet>
 					<h:outputText value="#{produto.valor}">
 						<f:convertNumber currencyCode="BRL" type="currency" locale="pt_BR"></f:convertNumber>
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<f:facet name="unidade">Unidade</f:facet>
+					<f:facet name="header">Unidade</f:facet>
 								#{produto.unidade}
 						</h:column>
 				<h:column>
 					<f:facet name="header">Ações</f:facet>
 						<h:commandLink action="#{produtoBean.excluir}" onclick="if(!confirm('Deseja excluir o produto #{produto.descricao}?'))return false">
-						<h:graphicImage library="imagens" name="button_cancel.png"/>
+						<h:graphicImage library="imagens" name="cancel19.png"/>
 						<f:setPropertyActionListener target="#{produtoBean.produtoSelecionado}" value="#{produto}"/>
 						</h:commandLink>
+						<h:commandLink  onclick="">
+						<h:graphicImage library="imagens" name="edit26.png"/>
+						<f:setPropertyActionListener target="#{produtoBean.produtoSelecionado}" value="#{produto}"/>
+						</h:commandLink>
+						
 				</h:column>
 			</h:dataTable>
 

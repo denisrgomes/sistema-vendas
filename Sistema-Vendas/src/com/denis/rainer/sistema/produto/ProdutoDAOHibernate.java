@@ -36,4 +36,10 @@ public class ProdutoDAOHibernate implements ProdutoDAO {
 		
 	}
 
+	@Override
+	public void alterar(Produto produto) {
+		this.session.update(produto);
+		
+	}
+
 }

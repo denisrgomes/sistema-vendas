@@ -26,4 +26,9 @@ public class ProdutoRN {
 		this.produtoDAO.excluir(produto);
 
 	}
+
+	public void alterar(Produto produto) {
+		this.produtoDAO.alterar(produto);
+		
+	}
 }

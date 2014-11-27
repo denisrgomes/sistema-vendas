@@ -20,21 +20,31 @@ public class ProdutoBean {
 		ProdutoRN produtoRN = new ProdutoRN();
 		produtoSelecionado.setDataCadastro(new Date());
 
-		produtoRN.salvar(produtoSelecionado);
+		if (this.produtoSelecionado.getId() != null
+				&& this.produtoSelecionado.getId() != 0) {
+			produtoRN.alterar(this.produtoSelecionado);
+			FacesMessage fmessage = new FacesMessage(
+					"Produto alterado com sucesso!!");
+			FacesContext fcontext = FacesContext.getCurrentInstance();
+			fcontext.addMessage(null, fmessage);
+		} else {
 
-		FacesMessage fmessage = new FacesMessage(
-				"Produto cadastrado com sucesso!!");
-		FacesContext fcontext = FacesContext.getCurrentInstance();
-		fcontext.addMessage(null, fmessage);
+			produtoRN.salvar(this.produtoSelecionado);
+			FacesMessage fmessage = new FacesMessage(
+					"Produto cadastrado com sucesso!!");
+			FacesContext fcontext = FacesContext.getCurrentInstance();
+			fcontext.addMessage(null, fmessage);
+		}
 
 		this.lista = null;
 	}
 
-	public void excluir(){
+	public void excluir() {
 		ProdutoRN produtoRN = new ProdutoRN();
 		produtoRN.excluir(produtoSelecionado);
 		this.lista = null;
 	}
+
 	public Produto getProdutoSelecionado() {
 		return produtoSelecionado;
 	}
@@ -51,4 +61,7 @@ public class ProdutoBean {
 		this.produtoSelecionado = produtoSelecionado;
 	}
 
+	public void novo() {
+		this.produtoSelecionado = new Produto();
+	}
 }
