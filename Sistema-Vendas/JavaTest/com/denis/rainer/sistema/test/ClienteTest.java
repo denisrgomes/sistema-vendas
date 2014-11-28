@@ -18,34 +18,9 @@ import com.denis.rainer.sistema.cliente.ClienteRN;
 import com.denis.rainer.sistema.util.HibernateUtil;
 import com.sun.org.apache.xpath.internal.operations.Equals;
 
-public class ClienteTest {
+public class ClienteTest extends TestHeranca{
 
-	static Session session;
-	static Transaction transaction;
-
-	@BeforeClass
-	public static void openSession() {
-		session = HibernateUtil.getSession().getCurrentSession();
-		transaction = session.beginTransaction();
-	}
-
-	@AfterClass
-	public static void closeSession() {
-		try {
-			transaction.commit();
-		} catch (Exception e) {
-			System.out.println("Problema no commit: " + e.getMessage());
-		} finally {
-			try {
-				if (session.isOpen()) {
-					session.close();
-				}
-			} catch (Exception e) {
-				System.out.println("Problema no fechamento da conexao: "
-						+ e.getMessage());
-			}
-		}
-	}
+	
 
 	@Before
 	public void setup() {
@@ -63,7 +38,7 @@ public class ClienteTest {
 		clienteRN.salvar(c3);
 	}
 
-	//@After
+	@After
 	public void limpaBanco() {
 		ClienteRN clienteRN = new ClienteRN();
 		List<Cliente> cliente = clienteRN.listar();
@@ -114,7 +89,7 @@ public class ClienteTest {
 
 		lista = clienteRN.listar();
 
-		assertEquals(6, lista.size());
+		assertEquals(2, lista.size());
 
 	}
 	

@@ -3,6 +3,7 @@ package com.denis.rainer.sistema.produto;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class ProdutoDAOHibernate implements ProdutoDAO {
@@ -33,13 +34,22 @@ public class ProdutoDAOHibernate implements ProdutoDAO {
 	@Override
 	public void excluir(Produto produto) {
 		this.session.delete(produto);
-		
+
 	}
 
 	@Override
 	public void alterar(Produto produto) {
 		this.session.update(produto);
-		
+
+	}
+
+	@Override
+	public Produto pesquisar(String string) {
+
+		Query consulta = this.session
+				.createQuery("from Produto p where p.descricao like :descricao");
+		consulta.setString("descricao", "%" + string + "%");
+		return (Produto) consulta.uniqueResult();
 	}
 
 }

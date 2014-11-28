@@ -29,6 +29,10 @@ public class ProdutoRN {
 
 	public void alterar(Produto produto) {
 		this.produtoDAO.alterar(produto);
-		
+
+	}
+
+	public Produto pesquisar(String string) {
+		return this.produtoDAO.pesquisar(string);
 	}
 }
