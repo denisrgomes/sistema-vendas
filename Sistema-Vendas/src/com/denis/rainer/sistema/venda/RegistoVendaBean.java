@@ -24,7 +24,7 @@ public class RegistoVendaBean {
 	private float valorTotal;
 
 	
-	public void getBuscaProduto(){
+	public void buscarProduto(){
 		ProdutoRN produtoRN = new ProdutoRN();
 		Produto produtoPesquisado = new Produto();
 		

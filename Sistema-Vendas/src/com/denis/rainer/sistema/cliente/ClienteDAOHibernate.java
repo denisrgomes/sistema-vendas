@@ -51,4 +51,9 @@ public class ClienteDAOHibernate implements ClienteDAO {
 		
 	}
 
+	@Override
+	public Cliente pesquisarPorCodigo(Integer codigo) {
+		return (Cliente) this.session.get(Cliente.class, codigo);
+	}
+
 }
