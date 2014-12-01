@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import com.denis.rainer.sistema.cliente.Cliente;
+import com.denis.rainer.sistema.cliente.ClienteRN;
 import com.denis.rainer.sistema.produto.Produto;
 import com.denis.rainer.sistema.produto.ProdutoRN;
 
@@ -15,6 +17,8 @@ import com.denis.rainer.sistema.produto.ProdutoRN;
 public class RegistoVendaBean {
 	private Cliente clienteSelecionado;
 	private Produto produtoSelecionado;
+	private List<SelectItem> clienteSelect;
+	//private List<SelectItem> produtoSelect;
 	private List<Produto> carrinhoCompras = new ArrayList<Produto>();
 
 	private float valorTotal;
@@ -72,5 +76,48 @@ public class RegistoVendaBean {
 	public void setValorTotal(float valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
+	public List<SelectItem> getClienteSelect() {
+		if(clienteSelect == null){
+			clienteSelect = new ArrayList<SelectItem>();
+			
+			ClienteRN clienteRN = new ClienteRN();
+			List<Cliente> listaClientes = clienteRN.listar();
+			
+			if(listaClientes !=null && !listaClientes.isEmpty()){
+				SelectItem item;
+				for (Cliente clienteLista : listaClientes) {
+					item = new SelectItem(clienteLista, clienteLista.getNome());
+					clienteSelect.add(item);
+				
+			}	
+			}
+			
+		}
+		
+		return clienteSelect;
+	}
+/*
+	public List<SelectItem> getProdutoSelect(){
+		if(produtoSelect == null){
+			produtoSelect =new ArrayList<SelectItem>();
+			
+			ProdutoRN produtoRN = new ProdutoRN();
+			List<Produto> listaProdutos = produtoRN.listar();
+			
+			if(listaProdutos !=null && !listaProdutos.isEmpty()){
+				SelectItem item;
+				for (Produto produto : listaProdutos) {
+					item = new SelectItem(produto, produto.getDescricao());
+					produtoSelect.add(item);
+					
+				}
+			}
+			
+			
+		}
+		return produtoSelect;
+	}
+*/
 
 }
