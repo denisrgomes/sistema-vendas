@@ -16,35 +16,37 @@ import com.denis.rainer.sistema.produto.ProdutoRN;
 @ViewScoped
 public class RegistoVendaBean {
 	private Cliente clienteSelecionado;
-	private Produto produtoSelecionado;
+	private Produto produtoSelecionado = new Produto();
 	private List<SelectItem> clienteSelect;
-	//private List<SelectItem> produtoSelect;
+	// private List<SelectItem> produtoSelect;
 	private List<Produto> carrinhoCompras = new ArrayList<Produto>();
 
 	private float valorTotal;
 
-	
-	public void buscarProduto(){
+	public void buscarProduto() {
 		ProdutoRN produtoRN = new ProdutoRN();
 		Produto produtoPesquisado = new Produto();
-		
-		if(this.produtoSelecionado.getDescricao()!=null && !this.produtoSelecionado.getDescricao().equals("")){
-			produtoPesquisado = produtoRN.pesquisar(this.produtoSelecionado.getDescricao());
-			
+
+		if (this.produtoSelecionado.getDescricao() != null
+				&& !this.produtoSelecionado.getDescricao().equals("")) {
+			produtoPesquisado = produtoRN.pesquisar(this.produtoSelecionado
+					.getDescricao());
+
 			this.carrinhoCompras.add(produtoPesquisado);
 			calcularTotal();
 		}
-	
-		
+
 	}
+
 	private void calcularTotal() {
-		if(!this.carrinhoCompras.isEmpty()){
+		if (!this.carrinhoCompras.isEmpty()) {
 			for (Produto p : this.carrinhoCompras) {
 				valorTotal += p.getValor();
 			}
 		}
-		
+
 	}
+
 	public Cliente getClienteSelecionado() {
 		return clienteSelecionado;
 	}
@@ -76,48 +78,30 @@ public class RegistoVendaBean {
 	public void setValorTotal(float valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
+
 	public List<SelectItem> getClienteSelect() {
-		if(clienteSelect == null){
+		if (clienteSelect == null) {
 			clienteSelect = new ArrayList<SelectItem>();
-			
+
 			ClienteRN clienteRN = new ClienteRN();
 			List<Cliente> listaClientes = clienteRN.listar();
-			
-			if(listaClientes !=null && !listaClientes.isEmpty()){
+
+			if (listaClientes != null && !listaClientes.isEmpty()) {
 				SelectItem item;
 				for (Cliente clienteLista : listaClientes) {
 					item = new SelectItem(clienteLista, clienteLista.getNome());
 					clienteSelect.add(item);
-				
-			}	
-			}
-			
-		}
-		
-		return clienteSelect;
-	}
-/*
-	public List<SelectItem> getProdutoSelect(){
-		if(produtoSelect == null){
-			produtoSelect =new ArrayList<SelectItem>();
-			
-			ProdutoRN produtoRN = new ProdutoRN();
-			List<Produto> listaProdutos = produtoRN.listar();
-			
-			if(listaProdutos !=null && !listaProdutos.isEmpty()){
-				SelectItem item;
-				for (Produto produto : listaProdutos) {
-					item = new SelectItem(produto, produto.getDescricao());
-					produtoSelect.add(item);
-					
+
 				}
 			}
-			
-			
+
 		}
-		return produtoSelect;
+
+		return clienteSelect;
 	}
-*/
+
+	public void setClienteSelect(List<SelectItem> clienteSelect) {
+		this.clienteSelect = clienteSelect;
+	}
 
 }

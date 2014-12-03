@@ -16,21 +16,26 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Cliente:" />
-				<h:selectOneMenu value="#{registroVendas.clienteSelecionado}">
+				<h:selectOneMenu value="#{registroVendas.clienteSelecionado}"
+					id="selectCliente">
 					<f:selectItem itemLabel="Selecione o cliente" />
 					<f:selectItems value="#{registroVendas.clienteSelect}" />
-				</h:selectOneMenu>
-				
-					<h:outputLabel value="Produto:" />
-					<h:panelGroup>
 					
-					<h:inputText value="" />
+				</h:selectOneMenu>
+
+
+				<h:outputLabel value="Produto:" />
+				<h:panelGroup>
+
+					<h:inputText value="#{registroVendas.produtoSelecionado.descricao}" />
 					<h:commandButton value="Pesquisar"
 						action="#{registroVendas.buscarProduto}" />
-						
-				</h:panelGroup>
-			</h:panelGrid>
 
+				</h:panelGroup>
+				<h:outputLabel value="Cliente ID: " />
+				<h:outputText value="#{registroVendas.clienteSelecionado.id}" />
+				</h:panelGrid>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

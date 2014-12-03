@@ -1,5 +1,6 @@
 package com.denis.rainer.sistema.cliente;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,10 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="cliente")
-public class Cliente {
-
+public class Cliente{
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -139,8 +140,6 @@ public class Cliente {
 			return false;
 		return true;
 	}
-	
-	
 	
 	
 }

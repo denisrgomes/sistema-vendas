@@ -35,4 +35,8 @@ public class ProdutoRN {
 	public Produto pesquisar(String string) {
 		return this.produtoDAO.pesquisar(string);
 	}
+
+	public Object pesquisarPorCodigo(Integer codigo) {
+		return this.produtoDAO.pesquisarPorCodigo(codigo);
+	}
 }

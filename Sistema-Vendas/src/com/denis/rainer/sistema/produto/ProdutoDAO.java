@@ -13,4 +13,6 @@ public interface ProdutoDAO {
 	public void alterar(Produto produto);
 
 	public Produto pesquisar(String string);
+
+	public Object pesquisarPorCodigo(Integer codigo);
 }

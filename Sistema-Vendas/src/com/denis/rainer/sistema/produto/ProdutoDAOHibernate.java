@@ -52,4 +52,10 @@ public class ProdutoDAOHibernate implements ProdutoDAO {
 		return (Produto) consulta.uniqueResult();
 	}
 
+	@Override
+	public Object pesquisarPorCodigo(Integer codigo) {
+		
+		return (Produto) this.session.get(Produto.class, codigo);
+	}
+
 }
